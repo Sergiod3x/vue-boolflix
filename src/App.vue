@@ -1,28 +1,145 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Loader v-if="!(albums.success)"/>
+    <!-- <button @click="searchAlbum(filteredArray)">Filtra</button> -->
+    <Nav  @search="searchAlbum"/>
+    <Main :films="filmsArray"/>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
+import Nav from "./components/Nav.vue";
+import Main from "./components/Main.vue";
+import Loader from "./components/Loader.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Nav,
+    Main,
+    Loader,
+  },
+  data(){
+    return{
+      albums:{},
+      filteredArray:[],
+      filmsArray:[],
+      films:{
+          "page": 1,
+          "results": [
+              {
+                  "adult": false,
+                  "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878,
+                      10751
+                  ],
+                  "id": 105,
+                  "original_language": "en",
+                  "original_title": "Back to the Future",
+                  "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+                  "popularity": 38.464,
+                  "poster_path": "/7lyBcpYB0Qt8gYhXYaEZUNlNQAv.jpg",
+                  "release_date": "1985-07-03",
+                  "title": "Back to the Future",
+                  "video": false,
+                  "vote_average": 8.3,
+                  "vote_count": 15222
+              },
+              {
+                  "adult": false,
+                  "backdrop_path": "/a4qvbI9x3nqu3hKQyDRVVBpMklx.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      10751,
+                      878
+                  ],
+                  "id": 165,
+                  "original_language": "en",
+                  "original_title": "Back to the Future Part II",
+                  "overview": "Marty and Doc are at it again in this wacky sequel to the 1985 blockbuster as the time-traveling duo head to 2015 to nip some McFly family woes in the bud. But things go awry thanks to bully Biff Tannen and a pesky sports almanac. In a last-ditch attempt to set things straight, Marty finds himself bound for 1955 and face to face with his teenage parents -- again.",
+                  "popularity": 21.527,
+                  "poster_path": "/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg",
+                  "release_date": "1989-11-22",
+                  "title": "Back to the Future Part II",
+                  "video": false,
+                  "vote_average": 7.7,
+                  "vote_count": 9744
+              },
+              {
+                  "adult": false,
+                  "backdrop_path": "/igaRMweCynEGoS6w4Rsim7JPnKu.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878
+                  ],
+                  "id": 196,
+                  "original_language": "en",
+                  "original_title": "Back to the Future Part III",
+                  "overview": "The final installment of the Back to the Future trilogy finds Marty digging the trusty DeLorean out of a mineshaft and looking for Doc in the Wild West of 1885. But when their time machine breaks down, the travelers are stranded in a land of spurs. More problems arise when Doc falls for pretty schoolteacher Clara Clayton, and Marty tangles with Buford Tannen.",
+                  "popularity": 17.89,
+                  "poster_path": "/crzoVQnMzIrRfHtQw0tLBirNfVg.jpg",
+                  "release_date": "1990-05-25",
+                  "title": "Back to the Future Part III",
+                  "video": false,
+                  "vote_average": 7.4,
+                  "vote_count": 7863
+              }
+          ],
+          "total_pages": 1,
+          "total_results": 3
+      },
+    }
+  },
+  created(){
+    axios.get("https://flynn.boolean.careers/exercises/api/array/music").then((result)=> {
+      this.albums = result.data
+      this.filteredArray = result.data.response
+      this.filmsArray= this.films.results
+      console.log(this.filmsArray)
+    })
+  },
+  methods:{
+    salutami(mex){
+      alert(mex); 
+    },
+    searchAlbum(albumString){
+      this.filteredArray = this.albums.response.filter((element)=>{
+        // console.log("stringa"+albumString);
+        // console.log(element);
+        // console.log("anno" +element.year);
+        // console.log("return" +element.year.includes("albumString"));
+        if ((element.year.includes(albumString))||(element.genre.includes(albumString))||(element.author.includes(albumString))||(element.title.includes(albumString))){
+          return true
+        }
+        false
+      })
+
+       
+
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+@import "./style/app.scss";
+#app{
+  background-color:$primary-color ;
 }
+// #app {
+//   font-family: Avenir, Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #2c3e50;
+//   margin-top: 60px;
+// }
 </style>
