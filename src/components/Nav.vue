@@ -27,14 +27,15 @@ export default{
 <style lang="scss" scoped>
 
 .navbar{
+    height: 30px;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
     .logo img{
-        height: 25px;
-        margin-top: 5px;
+        height: 30px;
+        width: auto;
 
     }
         

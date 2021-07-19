@@ -45,27 +45,19 @@ export default {
     salutami(mex){
       alert(mex); 
     },
-    searchAlbum(albumString){
-      let searchBottString = "https://api.themoviedb.org/3/search/movie?api_key=e4d8fd5e18690e57267700ebfb913c8d&query="+albumString;
-      axios.get(searchBottString).then((result)=> {
-      this.filteredArray = result.data.results
-       console.log("ciao")
+    searchAlbum(searchString){
+      if(searchString.length == 0){
+        this.filteredArray=  this.filmsArray;
+      } else{
+        let searchBottString = "https://api.themoviedb.org/3/search/movie?api_key=e4d8fd5e18690e57267700ebfb913c8d&query="+searchString;
+        axios.get(searchBottString).then((result)=> {
+        this.filteredArray = result.data.results
          console.log("ciao")
-            console.log(this.filmfilteredArray)
-    })
+           console.log("ciao")
+              console.log(this.filteredArray)
       
-      this.filteredArray = this.filmsArray.filter((element)=>{
-        // console.log("stringa"+albumString);
-        // console.log(element);
-        // console.log("anno" +element.year);
-        // console.log("return" +element.year.includes("albumString"));
-        if ((element.title.toLowerCase().includes(albumString.toLowerCase()))||(element.original_title.toLowerCase().includes(albumString.toLowerCase()))){
-          return true
-        }
-        false
-      })
-
-       
+        })
+      } 
 
     }
   }
