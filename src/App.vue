@@ -49,7 +49,7 @@ export default {
       if(searchString.length == 0){
         this.filteredArray=  this.filmsArray;
       } else{
-        let searchBottString = "https://api.themoviedb.org/3/search/movie?api_key=e4d8fd5e18690e57267700ebfb913c8d&query="+searchString;
+        let searchBottString = "https://api.themoviedb.org/3/search/multi?api_key=e4d8fd5e18690e57267700ebfb913c8d&query="+searchString;
         axios.get(searchBottString).then((result)=> {
         this.filteredArray = result.data.results
          console.log("ciao")
