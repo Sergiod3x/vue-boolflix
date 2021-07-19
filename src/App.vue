@@ -3,7 +3,7 @@
     <Loader v-if="!(albums.success)"/>
     <!-- <button @click="searchAlbum(filteredArray)">Filtra</button> -->
     <Nav  @search="searchAlbum"/>
-    <Main :films="filmsArray"/>
+    <Main :films="filteredArray"/>
 
   </div>
 </template>
@@ -29,6 +29,90 @@ export default {
       films:{
           "page": 1,
           "results": [
+               {
+                  "adult": false,
+                  "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878,
+                      10751
+                  ],
+                  "id": 105,
+                  "original_language": "en",
+                  "original_title": "Back to the Future",
+                  "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+                  "popularity": 38.464,
+                  "poster_path": "/7lyBcpYB0Qt8gYhXYaEZUNlNQAv.jpg",
+                  "release_date": "1985-07-03",
+                  "title": "Back to the Future",
+                  "video": false,
+                  "vote_average": 8.3,
+                  "vote_count": 15222
+              },
+               {
+                  "adult": false,
+                  "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878,
+                      10751
+                  ],
+                  "id": 105,
+                  "original_language": "en",
+                  "original_title": "Back to the Future",
+                  "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+                  "popularity": 38.464,
+                  "poster_path": "/7lyBcpYB0Qt8gYhXYaEZUNlNQAv.jpg",
+                  "release_date": "1985-07-03",
+                  "title": "Back to the Future",
+                  "video": false,
+                  "vote_average": 8.3,
+                  "vote_count": 15222
+              },
+              {
+                  "adult": false,
+                  "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878,
+                      10751
+                  ],
+                  "id": 105,
+                  "original_language": "en",
+                  "original_title": "Back to the Future",
+                  "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+                  "popularity": 38.464,
+                  "poster_path": "/7lyBcpYB0Qt8gYhXYaEZUNlNQAv.jpg",
+                  "release_date": "1985-07-03",
+                  "title": "Back to the Future",
+                  "video": false,
+                  "vote_average": 8.3,
+                  "vote_count": 15222
+              },
+                 {
+                  "adult": false,
+                  "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
+                  "genre_ids": [
+                      12,
+                      35,
+                      878,
+                      10751
+                  ],
+                  "id": 105,
+                  "original_language": "en",
+                  "original_title": "Back to the Future",
+                  "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+                  "popularity": 38.464,
+                  "poster_path": "/7lyBcpYB0Qt8gYhXYaEZUNlNQAv.jpg",
+                  "release_date": "1985-07-03",
+                  "title": "Back to the Future",
+                  "video": false,
+                  "vote_average": 8.3,
+                  "vote_count": 15222
+              },
               {
                   "adult": false,
                   "backdrop_path": "/3lbTiIN8cVonMUQwaeh5nvn61lr.jpg",
@@ -100,7 +184,7 @@ export default {
   created(){
     axios.get("https://flynn.boolean.careers/exercises/api/array/music").then((result)=> {
       this.albums = result.data
-      this.filteredArray = result.data.response
+      this.filteredArray = this.films.results
       this.filmsArray= this.films.results
       console.log(this.filmsArray)
     })
@@ -110,12 +194,12 @@ export default {
       alert(mex); 
     },
     searchAlbum(albumString){
-      this.filteredArray = this.albums.response.filter((element)=>{
+      this.filteredArray = this.filmsArray.filter((element)=>{
         // console.log("stringa"+albumString);
         // console.log(element);
         // console.log("anno" +element.year);
         // console.log("return" +element.year.includes("albumString"));
-        if ((element.year.includes(albumString))||(element.genre.includes(albumString))||(element.author.includes(albumString))||(element.title.includes(albumString))){
+        if ((element.title.toLowerCase().includes(albumString.toLowerCase()))||(element.original_title.toLowerCase().includes(albumString.toLowerCase()))){
           return true
         }
         false

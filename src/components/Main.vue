@@ -1,8 +1,12 @@
 <template>
     <div>
-        <div class="films">
-        <Film v-for="(films, index) in films" :key="index"
-         :films="films" />
+        <div class="container">
+            <div class="row">
+                <div class="films col-2">
+                    <Film v-for="(films, index) in films" :key="index"
+                    :films="films" />
+                </div>
+            </div>
         </div>
 
     </div>
