@@ -42,9 +42,6 @@ export default {
     })
   },
   methods:{
-    salutami(mex){
-      alert(mex); 
-    },
     searchAlbum(searchString){
       if(searchString.length == 0){
         this.filteredArray=  this.filmsArray;
