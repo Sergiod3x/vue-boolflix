@@ -31,6 +31,7 @@ export default{
 .films{
     display: flex;
     justify-content: space-between;
+      flex-wrap: wrap;
 }
 
 </style>
