@@ -21,31 +21,50 @@ export default{
    props : {
        films : Object
    },
+   data(){
+    return{
+      languageArray:["it","de","en","es","fr","pt"],
+      }
+    },
     methods:{
         imgSrc(partialSrc){
             return  "https://image.tmdb.org/t/p/w342"+ partialSrc;
         },
         returnFlag(Language) {
-        return require("../assets/flags/" + Language + ".svg");
-    },
+            //Se non ho la bandiera corrispondente stampo la bandiera della terra
+            if(this.languageArray.includes(Language)){
+                return require("../assets/flags/" + Language + ".svg");
+            }
+            return require("../assets/flags/all.png");
+        
+    }
   }
-}
+  }
+
 </script>
 
 <style lang="scss" scoped>
-.info{
-  width: 100%;
-  position: absolute;
-  bottom: 20px;
-  color: whitesmoke;
-  display: none;
-  .flag {
-      width: 25px;
+.film{
+    position: relative;
+    margin:25px;
+    .info{
+    background-color: rgba(0, 0, 0, 0.452);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    color: whitesmoke;
+    display: none;
+    .flag {
+        width: 25px;
+        }
     }
+
 }
 
 .film:hover .info{
   display: block;
 }
+
 
 </style>

@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="films col-2">
+                <div class="films">
                     <Film v-for="(films, index) in films" :key="index"
                     :films="films" />
                 </div>
@@ -30,7 +30,7 @@ export default{
 <style lang="scss" scoped>
 .films{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
       flex-wrap: wrap;
 }
 
