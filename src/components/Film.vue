@@ -10,15 +10,15 @@
                     <h4>Lingua originale</h4><img class="flag" :src="returnFlag(films.original_language)" alt="" />
                     <div class="vote">
                         <h4>Popolarità</h4>
-                        <ul v-if="vote > 0">
-                            <li><i class="far fa-star gold"></i></li>
-                            <li v-if="vote > 1"><i class="far fa-star gold"></i></li>
+                        <ul v-if="vote > 0"> 
+                            <li><i class="fas fa-star gold"></i></li>
+                            <li v-if="vote > 1"><i class="fas fa-star gold"></i></li>
                             <li v-else><i class="far fa-star "></i></li>
-                            <li v-if="vote > 2"><i class="far fa-star gold"></i></li>
+                            <li v-if="vote > 2"><i class="fas fa-star gold"></i></li>
                             <li v-else><i class="far fa-star"></i></li>
-                            <li v-if="vote > 3"><i class="far fa-star gold"></i></li>
+                            <li v-if="vote > 3"><i class="fas fa-star gold"></i></li>
                             <li v-else><i class="far fa-star"></i></li>
-                            <li v-if="vote > 4"><i class="far fa-star gold"></i></li>
+                            <li v-if="vote > 4"><i class="fas fa-star gold"></i></li>
                             <li v-else><i class="far fa-star"></i></li>
                         </ul>
                     </div>
