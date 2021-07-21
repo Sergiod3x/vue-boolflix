@@ -1,8 +1,7 @@
 <template>
 
     <div>
-        <div class="film">
-            <img :src="imgSrc(films.poster_path)" alt=""/>
+        <div class="film" :style="'background-image:url('+imgSrc(films.poster_path)+')'">
             <div class="info">
                 <div class="text">
                    Titolo :  <H3>{{films.title}} {{films.name}}</H3>  
@@ -49,17 +48,15 @@ export default{
             return  "https://image.tmdb.org/t/p/w342"+ partialSrc;
         },
         returnFlag(Language) {
-            console.log(this.films.vote_average);
-            console.log(this.vote);
-            //Se non ho la bandiera corrispondente stampo la bandiera della terra
-            if(this.languageArray.includes(Language)){
-                return require("../assets/flags/" + Language + ".svg");
-            }
-            return require("../assets/flags/all.png");
+                //Se non ho la bandiera corrispondente stampo la bandiera della terra
+                if(this.languageArray.includes(Language)){
+                    return require("../assets/flags/" + Language + ".svg");
+                }
+                return require("../assets/flags/all.png");
             
-        
-    }
-  }
+         
+                }
+            }         
   }
 
 </script>
@@ -68,6 +65,8 @@ export default{
 .film{
     position: relative;
     margin:25px;
+    height: 513px;
+    width: 342px;
 
     .info{
         background-color: rgba(0, 0, 0, 0.514);
