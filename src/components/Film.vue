@@ -68,6 +68,7 @@ export default{
 .film{
     position: relative;
     margin:25px;
+
     .info{
         background-color: rgba(0, 0, 0, 0.514);
         width: 100%;
